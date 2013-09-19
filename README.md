@@ -14,7 +14,7 @@ var options = {
 	proxyPort: 28960, // What port should it proxy to? (server's net_port)
 	bindHost: "127.0.0.1", // What host should proxy clients connect from?
 	serverPassword: "rcon_password", // The RCon password the server has
-	authLib: require('q3rcon-bridge/simple-auth').AuthLib // Which auth library to use, simple-auth uses auth.txt
+	authLib: new require('q3rcon-bridge/simple-auth')() // Which auth library to use, simple-auth uses auth.txt
 }
 
 var srv = rcon.createServer(options);
