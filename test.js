@@ -5,7 +5,8 @@ var options = {
 	proxyHost: "127.0.0.1", // What host should it proxy to? (server's net_ip)
 	proxyPort: 28961, // What port should it proxy to? (server's net_port)
 	bindHost: "127.0.0.1", // What host should proxy clients connect from?
-	serverPassword: "pass" // The RCon password the server has
+	serverPassword: "pass", // The RCon password the server has
+	authLib: require('./lib/simple-auth').AuthLib
 }
 
 var srv = rcon.createServer(options);
