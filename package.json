@@ -13,6 +13,7 @@
   "bin": {
   },
   "scripts": {
+	"test": "node ./bin/test.js"
   },
   "main": "./lib/rcon-proxy",
   "repository": {
