@@ -11,3 +11,6 @@ var options = {
 
 var srv = rcon.createServer(options);
 srv.start();
+setTimeout(function() {
+	process.exit();
+}, 10000);
