@@ -1,7 +1,7 @@
 {
   "name": "q3rcon-bridge",
   "preferGlobal": true,
-  "version": "0.1.6",
+  "version": "0.1.7",
   "author": "Johan Jatko <johan@pie-studios.com>",
   "description": "Proxies rcon commands to server with optional user:pass auth(and webpanel)",
   "contributors": [ 

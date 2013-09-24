@@ -16,7 +16,7 @@ function SimpleAuthLib(fileName) {
 SimpleAuthLib.prototype.auth = function(username, password, callback) {
 	for(i in this.users) {
 		if(this.users[i].username == username && this.users[i].password == password) {
-			callback(true);
+			return callback(true);
 		}
 	}
 	return callback(false);
