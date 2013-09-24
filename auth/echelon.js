@@ -2,6 +2,7 @@ var mysql = require('mysql');
 function EchelonAuthLib(options) {
 	authl = this;
 	this.users = new Array();
+	this.options = options;
 	this.conn = mysql.createConnection({
 		host: options.host,
 		user: options.user,
@@ -12,9 +13,9 @@ function EchelonAuthLib(options) {
 }
 EchelonAuthLib.prototype.fetchUsers = function() {
 	this.users = [];
-	this.conn.query("SELECT * FROM `" + options.database + "`.`users`", function(err, rows) {
+	this.conn.query("SELECT * FROM `" + this.options.database + "`.`users`", function(err, rows) {
 		for(var i in rows) {
-			this.users.push({username: rows[i].username, password: rows[i].password});
+			authl.users.push({username: rows[i].username, password: rows[i].password});
 		}
 	});
 }
