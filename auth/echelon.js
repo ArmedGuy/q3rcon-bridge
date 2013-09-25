@@ -8,9 +8,9 @@ function EchelonAuthLib(options) {
 EchelonAuthLib.prototype.fetchUsers = function() {
 	this.users = [];
 	this.conn = mysql.createConnection({
-		host: options.host,
-		user: options.user,
-		password: options.password
+		host: this.options.host,
+		user: this.options.user,
+		password: this.options.password
 	});
 	this.conn.connect();
 	this.conn.query("SELECT * FROM `" + this.options.database + "`.`users`", function(err, rows) {
