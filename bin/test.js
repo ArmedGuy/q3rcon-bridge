@@ -3,8 +3,6 @@ var dgram = require('dgram');
 alib = require('../auth/simple');
 simple_auth = new alib(process.cwd() + "/bin/auth.txt");
 var options = {
-	listenHost: "127.0.0.1", // What host should proxy listen on?
-	listenPort: 28962, // What port should proxy listen on?
 	proxyHost: "127.0.0.1", // What host should it proxy to? (server's net_ip)
 	proxyPort: 28960, // What port should it proxy to? (server's net_port)
 	bindHost: "127.0.0.1", // What host should proxy clients connect from?
@@ -13,7 +11,7 @@ var options = {
 }
 
 var srv = rcon.createServer(options);
-srv.start();
+srv.listen(28962, "127.0.0.1");
 setTimeout(function() {
 	var message = new Buffer("\xFF\xFF\xFF\xFFrcon test:test status", "ascii");
 	console.log("Test: sending test udp payload!");
