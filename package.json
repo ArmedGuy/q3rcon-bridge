@@ -4,13 +4,14 @@
   "version": "0.2.4",
   "author": "Johan Jatko <johan@pie-studios.com>",
   "description": "Proxies rcon commands to server with optional user:pass auth",
-  "contributors": [ 
+  "contributors": [
     {
       "name": "Johan Jatko",
       "email": "johan@pie-studios.com"
     }
   ],
   "bin": {
+    "q3rconbridge": "./bin/server"
   },
   "scripts": {
 	"test": "node ./bin/test.js"
@@ -33,7 +34,7 @@
   "dependencies" : {},
   "analyze": false,
   "devDependencies": {},
-  "bundledDependencies": [],  
+  "bundledDependencies": [],
   "license": "MIT",
   "engines": {
     "node": ">=0.10"

@@ -1,7 +1,7 @@
 var rcon = require('../lib/rcon-proxy');
 var dgram = require('dgram');
-alib = require('../auth/simple');
-simple_auth = new alib(process.cwd() + "/bin/auth.txt");
+var alib = require('../auth/simple');
+var simple_auth = new alib(process.cwd() + "/bin/auth.txt");
 var options = {
 	proxyHost: "127.0.0.1", // What host should it proxy to? (server's net_ip)
 	proxyPort: 28960, // What port should it proxy to? (server's net_port)
@@ -22,15 +22,15 @@ setTimeout(function() {
 	var goodAuthMessage = new Buffer("\xFF\xFF\xFF\xFFrcon test:test status", "ascii");
 	var badAuthMessage = new Buffer("\xFF\xFF\xFF\xFFrcon test:badpassword status", "ascii");
 	var client = dgram.createSocket("udp4");
-	
+
 	console.log("Sending good payload!");
 	client.send(goodAuthMessage, 0, goodAuthMessage.length, 28962, "localhost", function(err, bytes) {
 	  console.log("Good payload sent!");
-	  
+
 	  console.log("Sending bad payload!");
 	  client.send(badAuthMessage, 0, badAuthMessage.length, 28962, "localhost", function(err, bytes) {
 		  console.log("Bad payload sent!");
-		  
+
 		  client.close();
 		  setTimeout(function() {
 			process.exit();

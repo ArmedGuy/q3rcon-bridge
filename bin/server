@@ -1,0 +1,38 @@
+#!/usr/bin/env node
+var fs = require('fs');
+var config = null;
+if(process.argv.length == 3) {
+	try {
+		config = require(process.argv[2]); // expect configuration file
+	} catch(e) {
+		console.log(e);
+		console.log(process.argv);
+		console.log("Error loading configuration file");
+		process.exit(1);
+	}
+} else {
+	console.log("Missing configuration file in command line options");
+	process.exit(1);
+}
+var rcon = require('../lib/rcon-proxy');
+var alib = require('../auth/' + config.authLib);
+var options = {
+	proxyHost: config.proxyHost, // What host should it proxy to? (server's net_ip)
+	proxyPort: config.proxyPort, // What port should it proxy to? (server's net_port)
+	bindHost: config.bindHost, // What host should proxy clients connect from?
+	serverPassword: config.serverPassword, // The RCon password the server has
+	authLib: new alib(config.authSettings)
+}
+
+var srv = rcon.createServer(options);
+srv.on("command", function(auth, command) {
+	console.log(auth.user + " sent command: " + command);
+});
+srv.on("badauth", function(auth, command) {
+	console.log(auth.user + " failed to authenticate!");
+});
+console.log("Starting q3rcon-bridge server on", config.listenHost + ":" + config.listenPort);
+console.log("Proxying to q3-based server at ", config.proxyHost + ":" + config.proxyPort);
+console.log(" - bindHost:", config.bindHost);
+console.log(" - authLib: ", config.authLib);
+srv.listen(config.listenPort, config.listenHost);
