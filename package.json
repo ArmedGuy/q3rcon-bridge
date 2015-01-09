@@ -1,13 +1,13 @@
 {
   "name": "q3rcon-bridge",
   "preferGlobal": true,
-  "version": "0.2.4",
-  "author": "Johan Jatko <johan@pie-studios.com>",
+  "version": "0.3.0",
+  "author": "Johan Jatko <johan.jatko@outlook.com>",
   "description": "Proxies rcon commands to server with optional user:pass auth",
   "contributors": [
     {
       "name": "Johan Jatko",
-      "email": "johan@pie-studios.com"
+      "email": "johan.jatko@outlook.com"
     }
   ],
   "bin": {
@@ -19,17 +19,19 @@
   "main": "./lib/rcon-proxy",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Pie-Studios/q3rcon-bridge.git"
+    "url": "https://github.com/ArmedGuy/q3rcon-bridge.git"
   },
   "keywords": [
-	"call of duty",
-	"cod4",
-	"mw2",
-	"game",
-	"administration",
-	"rcon",
-	"proxy",
-	"udp"
+  	"call of duty",
+    "q3",
+    "quake",
+  	"cod4",
+  	"mw2",
+  	"game",
+  	"administration",
+  	"rcon",
+  	"proxy",
+  	"udp"
   ],
   "dependencies" : {},
   "analyze": false,
