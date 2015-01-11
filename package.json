@@ -3,7 +3,7 @@
   "preferGlobal": true,
   "version": "0.3.0",
   "author": "Johan Jatko <johan.jatko@outlook.com>",
-  "description": "Proxies rcon commands to server with optional user:pass auth",
+  "description": "Proxies rcon commands to servers with optional user:pass auth",
   "contributors": [
     {
       "name": "Johan Jatko",
@@ -14,7 +14,7 @@
     "q3rconbridge": "./bin/server"
   },
   "scripts": {
-	"test": "node ./bin/test.js"
+    "test": "node ./bin/test.js"
   },
   "main": "./lib/rcon-proxy",
   "repository": {
@@ -22,18 +22,20 @@
     "url": "https://github.com/ArmedGuy/q3rcon-bridge.git"
   },
   "keywords": [
-  	"call of duty",
+    "call of duty",
     "q3",
     "quake",
-  	"cod4",
-  	"mw2",
-  	"game",
-  	"administration",
-  	"rcon",
-  	"proxy",
-  	"udp"
+    "cod4",
+    "mw2",
+    "game",
+    "administration",
+    "rcon",
+    "proxy",
+    "udp"
   ],
-  "dependencies" : {},
+  "dependencies": {
+    "mysql": "^2.5.4"
+  },
   "analyze": false,
   "devDependencies": {},
   "bundledDependencies": [],

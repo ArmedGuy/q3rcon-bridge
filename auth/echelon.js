@@ -1,7 +1,8 @@
+/*
 var mysql = require('mysql');
 function EchelonAuthLib(options) {
 	authl = this;
-	this.users = new Array();
+	this.users = [];
 	this.options = options;
 	this.fetchUsers();
 }
@@ -30,3 +31,4 @@ EchelonAuthLib.prototype.auth = function(username, password, callback) {
 	return callback(false);
 }
 module.exports = EchelonAuthLib;
+*/

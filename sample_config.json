@@ -1,11 +1,14 @@
 {
   "listenHost": "127.0.0.1",
   "listenPort": 28962,
-
-  "proxyHost": "127.0.0.1",
-	"proxyPort": 28960,
-	"bindHost": "127.0.0.1",
-	"serverPassword": "pass",
+  "bindHost": "127.0.0.1",
+  "servers": {
+    "cod4#1": {
+      "host": "127.0.0.1",
+      "port": 28960,
+      "password": "pass"
+    }
+  },
 
   "authLib": "simple",
   "authSettings": "./bin/auth.txt"

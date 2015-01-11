@@ -17,22 +17,19 @@ if(process.argv.length == 3) {
 var rcon = require('../lib/rcon-proxy');
 var alib = require('../auth/' + config.authLib);
 var options = {
-	proxyHost: config.proxyHost, // What host should it proxy to? (server's net_ip)
-	proxyPort: config.proxyPort, // What port should it proxy to? (server's net_port)
+	servers: config.servers,
 	bindHost: config.bindHost, // What host should proxy clients connect from?
-	serverPassword: config.serverPassword, // The RCon password the server has
 	authLib: new alib(config.authSettings)
 }
 
 var srv = rcon.createServer(options);
-srv.on("command", function(auth, command) {
+srv.on("command", function(auth, server, command) {
 	console.log(auth.user + " sent command: " + command);
 });
-srv.on("badauth", function(auth, command) {
+srv.on("badauth", function(auth, server, command) {
 	console.log(auth.user + " failed to authenticate!");
 });
 console.log("Starting q3rcon-bridge server on", config.listenHost + ":" + config.listenPort);
-console.log("Proxying to q3-based server at ", config.proxyHost + ":" + config.proxyPort);
 console.log(" - bindHost:", config.bindHost);
 console.log(" - authLib: ", config.authLib);
 srv.listen(config.listenPort, config.listenHost);
