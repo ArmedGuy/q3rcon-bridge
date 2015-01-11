@@ -17,10 +17,13 @@ var options = {
 }
 
 var srv = rcon.createServer(options);
-srv.on("command", function(auth, command) {
+srv.on("listening", function() {
+	console.log("Server is listening!");
+});
+srv.on("command", function(auth, server, command) {
 	console.log(auth.user + " sent command: " + command);
 });
-srv.on("badauth", function(auth, command) {
+srv.on("badauth", function(auth, server, command) {
 	console.log(auth.user + " failed to authenticate!");
 });
 srv.listen(28962, "127.0.0.1");
