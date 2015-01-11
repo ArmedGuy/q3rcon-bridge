@@ -24,12 +24,15 @@ var options = {
 
 var srv = rcon.createServer(options);
 srv.on("command", function(auth, server, command) {
-	console.log(auth.user + " sent command: " + command);
+	console.log(auth.user, "sent command:", command, "; to:", server);
 });
 srv.on("badauth", function(auth, server, command) {
-	console.log(auth.user + " failed to authenticate!");
+	console.log(auth.user,"failed to authenticate on", server, "; sent:", command);
 });
 console.log("Starting q3rcon-bridge server on", config.listenHost + ":" + config.listenPort);
+for(var i in config.servers) {
+	console.log("| proxying to", i, "at", config.servers[i].host + ":" + config.servers[i].port);
+}
 console.log(" - bindHost:", config.bindHost);
 console.log(" - authLib: ", config.authLib);
 srv.listen(config.listenPort, config.listenHost);

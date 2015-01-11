@@ -6,6 +6,7 @@ function MySQLAuthLib(options) {
   this.fetchUsers();
 }
 MySQLAuthLib.prototype.fetchUsers = function() {
+  var authl = this;
   this.conn = mysql.createConnection({
     host: this.options.host,
     user: this.options.user,
@@ -17,7 +18,7 @@ MySQLAuthLib.prototype.fetchUsers = function() {
       authl.users.push({
         username: rows[i].username,
         password: rows[i].password,
-        rows[i].servers.indexOf("|") > -1 ? rows[i].servers.split("|") : rows.servers
+        servers: rows[i].servers.indexOf("|") > -1 ? rows[i].servers.split("|") : [rows.servers]
       });
     }
     this.conn.end();
@@ -28,7 +29,7 @@ MySQLAuthLib.prototype.auth = function(username, password, server, callback) {
   for(var i in this.users) {
     if(this.users[i].username == username &&
        this.users[i].password == password &&
-       server in this.users[i].servers) {
+       this.users[i].servers.indexOf(server) != -1) {
          callback(true);
     } else {
       callback(false);

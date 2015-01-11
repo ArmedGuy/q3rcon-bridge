@@ -33,11 +33,11 @@ setTimeout(function() {
 	var client = dgram.createSocket("udp4");
 
 	console.log("Sending good payload!");
-	client.send(goodAuthMessage, 0, goodAuthMessage.length, 28962, "localhost", function(err, bytes) {
+	client.send(goodAuthMessage, 0, goodAuthMessage.length, 28962, "127.0.0.1", function(err, bytes) {
 	  console.log("Good payload sent!");
 
 	  console.log("Sending bad payload!");
-	  client.send(badAuthMessage, 0, badAuthMessage.length, 28962, "localhost", function(err, bytes) {
+	  client.send(badAuthMessage, 0, badAuthMessage.length, 28962, "127.0.0.1", function(err, bytes) {
 		  console.log("Bad payload sent!");
 
 		  client.close();
