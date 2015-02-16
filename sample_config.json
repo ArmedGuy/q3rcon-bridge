@@ -1,5 +1,5 @@
 {
-  "listenHost": "127.0.0.1",
+  "listenHost": "0.0.0.0",
   "listenPort": 28962,
   "bindHost": "127.0.0.1",
   "servers": {
@@ -10,6 +10,11 @@
     }
   },
 
-  "authLib": "simple",
-  "authSettings": "./bin/auth.txt"
+  "authLib": "mysql",
+  "authSettings": {
+    "host": "localhost",
+    "user": "root",
+    "password": "",
+    "database": "q3rcon-bridge"
+  }
 }

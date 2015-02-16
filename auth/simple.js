@@ -3,6 +3,10 @@ function SimpleAuthLib(fileName) {
 	var authl = this;
 	this.filename = fileName || process.cwd() + "/auth.txt";
 	this.users = [];
+}
+SimpleAuthLib.prototype.fetchUsers = function() {
+	var authl = this;
+	this.users = [];
 	fs.readFile(this.filename, function(err, data) {
 		if(err) throw err;
 		var arr = data.toString().split("\n");
@@ -16,15 +20,16 @@ function SimpleAuthLib(fileName) {
 			});
 		}
 	});
-}
+};
 SimpleAuthLib.prototype.auth = function(username, password, server, callback) {
 	for(i in this.users) {
 		if(this.users[i].username == username &&
 			 this.users[i].password == password &&
 			 this.users[i].servers.indexOf(server) != -1) {
-			return callback(true);
+				callback(true);
+				return;
 		}
 	}
-	return callback(false);
+	callback(false);
 }
 module.exports = SimpleAuthLib;

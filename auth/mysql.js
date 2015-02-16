@@ -3,7 +3,6 @@ function MySQLAuthLib(options) {
   this.options = options;
   this.users = [];
   this.conn = null;
-  this.fetchUsers();
 }
 MySQLAuthLib.prototype.fetchUsers = function() {
   var authl = this;
@@ -12,16 +11,22 @@ MySQLAuthLib.prototype.fetchUsers = function() {
     user: this.options.user,
     password: this.options.password
   });
-  this.conn.connect();
-  this.conn.query("SELECT * FROM `" + this.options.database + "`.`rcon_users`", function(err, rows) {
-    for(var i in rows) {
-      authl.users.push({
-        username: rows[i].username,
-        password: rows[i].password,
-        servers: rows[i].servers.indexOf("|") > -1 ? rows[i].servers.split("|") : [rows.servers]
-      });
+  this.users = [];
+  this.conn.connect(function(err) {
+    if(err) {
+      console.error("Error connecting to MySQL server: " + err.stack);
+      return;
     }
-    this.conn.end();
+    authl.conn.query("SELECT * FROM `" + authl.options.database + "`.`rcon_users`", function(err, rows) {
+      for(var i in rows) {
+        authl.users.push({
+          username: rows[i].username,
+          password: rows[i].password,
+          servers: rows[i].servers.indexOf(",") > -1 ? rows[i].servers.split(",") : [rows[i].servers]
+        });
+      }
+      authl.conn.end();
+    });
   });
 };
 MySQLAuthLib.prototype.auth = function(username, password, server, callback) {
@@ -31,9 +36,9 @@ MySQLAuthLib.prototype.auth = function(username, password, server, callback) {
        this.users[i].password == password &&
        this.users[i].servers.indexOf(server) != -1) {
          callback(true);
-    } else {
-      callback(false);
+         return;
     }
   }
+  callback(false);
 };
 module.exports = MySQLAuthLib;

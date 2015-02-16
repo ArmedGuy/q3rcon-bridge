@@ -13,19 +13,27 @@ Example:
 `q3rconbridge ./sample_config.json`
 
 
-#### Configuration file
+#### Sample Configuration file
 ```
 {
-  "listenHost": "127.0.0.1", // host that the bridge should listen on
-  "listenPort": 28962, // port that the bridge should listen on
+  "listenHost": "127.0.0.1",
+  "listenPort": 28962,
+  "bindHost": "127.0.0.1",
+  "servers": {
+    "srv1": {
+      "host": "127.0.0.1",
+      "port": 28960,
+      "password": "pass"
+    }
+  },
 
-  "proxyHost": "127.0.0.1", // host that the bridge should proxy requests TO (gameserver's net_ip)
-	"proxyPort": 28960, // port that the bridge should proxy requests TO (gameserver's net_port)
-	"bindHost": "127.0.0.1", // ip to bind proxy users to, leave 127.0.0.1 if server is on the same computer
-	"serverPassword": "pass", // rcon password for the q3-based server (gameserver's rcon_password)
-
-  "authLib": "simple", // type of authentication, only "simple" works for now
-  "authSettings": "./bin/auth.txt" // settings for authentication. specific requirements per library ("simple" wants a path to the user file)
+  "authLib": "mysql",
+  "authSettings": {
+    "host": "localhost",
+    "user": "root",
+    "password": "",
+    "database": "q3rcon-bridge"
+  }
 }
 ```
 
