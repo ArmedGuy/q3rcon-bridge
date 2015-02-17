@@ -24,10 +24,10 @@ var options = {
 
 var srv = rcon.createServer(options);
 srv.on("command", function(auth, server, command) {
-	console.log(auth.user, "->", server, "|=", server);
+	console.log(auth.user, "->", server, "=>", command.trim());
 });
 srv.on("badauth", function(auth, server, command) {
-	console.log(auth.user,"failed to authenticate on", server, "; sent:", command);
+	console.log(auth.user,"failed to authenticate on", server);
 });
 srv.on("badserver", function(auth, server, command) {
 	console.log(auth.ip,"attemting to connect to unknown server",server);
