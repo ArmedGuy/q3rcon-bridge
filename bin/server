@@ -24,7 +24,7 @@ var options = {
 
 var srv = rcon.createServer(options);
 srv.on("command", function(auth, server, command) {
-	console.log(auth.user, "sent command:", command, "; to:", server);
+	console.log(auth.user, "->", server, "|=", server);
 });
 srv.on("badauth", function(auth, server, command) {
 	console.log(auth.user,"failed to authenticate on", server, "; sent:", command);
