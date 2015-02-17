@@ -34,7 +34,6 @@
     "udp"
   ],
   "dependencies": {
-    "commander": "^2.6.0",
     "mysql": "^2.5.4"
   },
   "analyze": false,
