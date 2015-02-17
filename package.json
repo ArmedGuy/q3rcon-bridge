@@ -1,7 +1,7 @@
 {
   "name": "q3rcon-bridge",
   "preferGlobal": true,
-  "version": "0.3.6",
+  "version": "0.3.7",
   "author": "Johan Jatko <johan.jatko@outlook.com>",
   "description": "Proxies rcon commands to servers with optional user:pass auth",
   "contributors": [
